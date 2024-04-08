@@ -1,0 +1,10 @@
+$("input[name=username]").attr("placeholder", "İstifadəçi adı")
+$("input[name=first_name]").attr("placeholder", "Ad")
+$("input[name=last_name]").attr("placeholder", "Soy ad")
+$("input[name=father_name]").attr("placeholder", "Ata adı")
+$("input[name=birthday]").attr("placeholder", "Doğum tarixi")
+$("input[name=email]").attr("placeholder", "Elektron poçt")
+$("input[name=password1]").attr("placeholder", "Şifrə")
+$("input[name=password2]").attr("placeholder", "Şifrə yenidən")
+$("select[name=student_class]").children("").eq(0).attr("disabled", "").html("Sinif")
+

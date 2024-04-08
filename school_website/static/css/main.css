@@ -1,0 +1,150 @@
+*   {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root   {
+    --blue-color: #003764;
+    --error-color: rgb(173, 15, 15);
+    --success-green: #3ea037;
+    --light-success-green: #3ea03770;
+    --dark-success-green: #3ea037bb;
+}
+
+html  {
+    height: 100%;
+}
+
+header  {
+    background-color: rgb(162, 148, 240);
+}
+
+.heading    {
+    width: 100%;
+    background-color: var(--blue-color);
+    outline-offset: 6px;
+    outline-width: 6px;
+    outline-color: var(--blue-color);
+    outline-style: solid;
+    padding: 0 200px;
+}
+
+.navbar {
+    padding: 40px 0;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    position: relative;
+}
+
+.logo   {
+    z-index: 100;
+    position: relative;
+    background-color: #fff;
+    display: inline-flex;
+    padding: 15px 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logo img   {
+    height: 120px;
+}
+
+.navbar-list    {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-list li {
+    margin: 0 10px;
+}
+
+.navbar-list a  {
+    margin: 10px 0;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+    position: relative;
+}
+
+
+.navbar-list a::before  {
+    content: "";
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform: scale(0);
+    transform-origin: center;
+    transition: 0.3s ease;
+}
+
+.navbar-list a:hover::before    {
+    transform: scale(1);
+}
+
+.section-container   {
+    width: 1200px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 40px 0;
+}
+
+@media (min-width:996px) and (max-width:1199.98px) {
+    .section-container  {
+        width: 992px;
+    }
+
+    .heading    {
+        padding: 0 100px;
+    }
+}
+
+@media (min-width:768px) and (max-width:995.98px) {
+    .section-container  {
+        width: 760px;
+    }
+
+    .heading    {
+        padding: 0 80px;
+    }
+}
+
+@media (min-width:576px) and (max-width:767.98px) {
+    .section-container  {
+        width: 570px;
+    }
+
+    .heading    {
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width:575.98px) {
+    .section-container  {
+        width: 100%;
+    }
+
+    .heading    {
+        padding: 0 20px;
+    }
+
+    .navbar-list li {
+        margin: 0 5px;
+    }
+
+    .navbar-list a  {
+        padding: 20px 10px;
+    }
+    
+}

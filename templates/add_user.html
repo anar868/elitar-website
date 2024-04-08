@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/forms.css' %}">
+
+<section class="section-container">
+    <div class="login-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h1>Istifadəçi əlavə et</h1>
+            <input type="text" name="username" placeholder="Istifadəçi adı">
+            <input type="text" name="first_name" placeholder="Ad">
+            <input type="text" name="last_name" placeholder="Soyad">
+            <input type="text" name="email" placeholder="Email">
+            <select name="student_class">
+                <option value="">Sinif</option>
+            {% for class in student_classes %}
+                <option value="{{class.id}}">{{class.class_name}}</option>
+            {% endfor %}
+            </select>
+            <input type="text" name="password1" placeholder="Şifrə">
+            <input type="text" name="password2" placeholder="Şifrə təkrar">
+            {% if error_message %}
+            <p class="error-text">Şifrə və ya istifadəçi adı yanlışdır</p>
+            {% endif %}
+            <button>Təsdiqlə</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

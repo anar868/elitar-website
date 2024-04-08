@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/forms.css' %}">
+
+    <section class="add-user">
+        <div class="add-user-container">
+            {{user_name}}
+            <h1>Şagird əlavə et</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form1 %}
+
+                    {{ field.errors }}
+                    {{ field }}
+                    <!-- {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %} -->
+                    
+                    
+                {% endfor %}
+
+                {% for field in form2 %}
+
+                    {{ field.errors }}
+                    {{ field }}
+                    <!-- {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %} -->
+
+                {% endfor %}
+
+                {% for field in form3 %}
+
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                    <!-- {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %} -->
+
+                {% endfor %}
+                <button type="submit">Əlavə et</button>
+            </form>
+        </div>
+
+    </section>
+
+    <section class="message">
+        <div class="message-container">
+            <div class="message-box">
+                
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script>
+
+{% endblock %}

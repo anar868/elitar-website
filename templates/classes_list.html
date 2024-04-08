@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/classes_list.css' %}">
+
+<section class="section-container">
+    <h1 class="classes_title">Siniflər</h1>
+    <table class="classes-table">
+        <tr class="first-tr">
+            <th>Sinif</th>
+            <th>Gəlməyənlər</th>
+            <th>Gələnlər</th>
+        </tr>
+
+        {% for class in classes %}
+            <tr {% for checked_class in checked_classes %}
+                {% if class == checked_class %}
+                class="checked_class"
+                {% endif %}
+                {% endfor %}
+
+                onclick="location.href = '/missing_students/{{class.id}}';"
+            >
+                <th>
+                    {{class.class_name}}
+                </th>
+                <th>
+                    {% for class_name, missing_count in missing_students_count.items %}
+                        {% if class_name == class %}
+                            {{ missing_count }}
+                        {% endif %}
+                    {% endfor %}
+                </th>
+                <th>
+                    {% for class_name, count in students_count.items %}
+                        {% if class_name == class %}
+                            {{ count }}
+                        {% endif %}
+                    {% endfor %}
+                </th>
+
+            </tr>
+
+            
+        {% endfor %}
+    </table>
+</section>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/forms.css' %}">
+
+<section class="section-container">
+    <div class="login-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h1>Daxil ol</h1>
+            <input type="text" name="username" placeholder="Istifadəçi adı" {% if username %}value="{{username}}"{% endif %}>
+            <input type="password" name="password" placeholder="Şifrə" {% if password %}value="{{password}}"{% endif %}>
+            {% if error_message %}
+            <p class="error-text">Şifrə və ya istifadəçi adı yanlışdır</p>
+            {% endif %}
+            <button>Giriş</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

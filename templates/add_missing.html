@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/add_missing.css' %}">
+
+<section class="section-container">
+    <h1 class="class_name">{{student_class.class_name}}</h1>
+    <div class="add-missing-container">
+        <div class="list-container">
+            <h3>Gələnlər ({{student_count}})</h3>
+            <ul class="students-list">
+                {% if students %}
+                    {% for student in students %}
+                        <li class="student-li">
+                            {{ student.first_name }} {{ student.last_name }}
+                            <div class="remove-missing">
+                                <form action="{% url 'remove_missing' %}" method="post">
+                                    {%csrf_token%}
+                                    <input type="hidden" name="add_missing" value="add_missing">
+                                    <input type="hidden" name="student_id" value="{{student.id}}">
+                                    <input type="hidden" name="student_first_name" value="{{student.first_name}}">
+                                    <button>
+                                        <div class="remove-missing-button-div">
+                                            <div class="remove-missing-button-1 remove-missing-button"></div>
+                                            <div class="remove-missing-button-2 remove-missing-button"></div>
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>    
+        <div class="list-container">
+            <h3>Gəlməyənlər ({{missing_count}})</h3>
+            <ul class="students-list">
+                {% if missing_students %}
+                    {% for student in missing_students %}
+                        <li class="student-li missing-students">
+                            {{ student.student.first_name }} {{ student.student.last_name }}
+                            <div class="remove-missing">
+                                <form action="{% url 'remove_missing' %}" method="post">
+                                    {%csrf_token%}
+                                    <input type="hidden" name="remove_missing" value="remove_missing">
+                                    <input type="hidden" name="missing_student_id" value="{{student.id}}">
+                                    <input type="hidden" name="missing_student_first_name" value="{{student.student.first_name}}">
+                                    <button>
+                                        <div class="remove-missing-button-div">
+                                            <div class="remove-missing-button-1 remove-missing-button"></div>
+                                            <div class="remove-missing-button-2 remove-missing-button"></div>
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                <form action="{% url 'class_checked' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="check_class" value="check_class">
+                    <input type="hidden" name="class_id" value="{{student_class.id}}">
+                    <input type="hidden" name="class_name" value="{{student_class.class_name}}">
+                    <button {% if checked_class == 'yes' %}disabled style="background-color: var(--success-green);cursor:not-allowed" {% endif %} class="missing-student add-missing-student-button">Yoxladım</button>
+                </form>
+            </ul>
+        </div>    
+    </div>
+</section>
+{{a}}
+
+
+
+
+
+
+{% endblock %}

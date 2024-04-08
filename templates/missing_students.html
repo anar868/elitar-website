@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/add_missing.css' %}">
+
+<section class="section-container">
+    <h1 class="class_name">{{student_class.class_name}}</h1>
+    <h2 class="date_of_today class_name" style="font-size: 2rem;">{{date_of_today}}</h2>
+    <div class="add-missing-container">
+        <div class="list-container">
+            <h3>Gələnlər ({{student_count}})</h3>
+            <ul class="students-list">
+                {% if students %}
+                    {% for student in students %}
+                        <li class="student-li">
+                            {{ student.first_name }} {{ student.last_name }}
+                            <div class="remove-missing">
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>    
+        <div class="list-container">
+            <h3>Gəlməyənlər ({{missing_count}})</h3>
+            <ul class="students-list">
+                {% if missing_students %}
+                    {% for student in missing_students %}
+                        <li class="student-li missing-students">
+                            {{ student.student.first_name }} {{ student.student.last_name }}
+                            <div class="remove-missing">
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>    
+    </div>
+</section>
+{{a}}
+
+
+
+
+
+
+{% endblock %}
